@@ -1,0 +1,5 @@
+{
+  "id": "nature",
+  "prompt": "Use case: stylized-concept. Asset type: scenic background artwork for a Greek children's charades game, no interface. Landscape 16:10 composition. A premium whimsical nature tabletop world in handcrafted 3D clay style: warm honey wooden tabletop across the bottom quarter, lush friendly dimensional leaves and small flowers framing far left and right corners, a sunlit little woodland with soft green foliage in the background, warm cream central clearing. Carefully composed light shafts, rounded tactile leaves, beautiful wood grain and gentle natural illumination. Keep the central 60 percent open and softly lit for readable game controls. No characters, no dice, no board, no cards, no UI, no text, no letters, no logo or watermark. Calm inviting magical miniature tabletop suitable for young children.",
+  "method": "builtin-imagegen"
+}

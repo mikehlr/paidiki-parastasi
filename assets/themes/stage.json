@@ -1,0 +1,5 @@
+{
+  "id": "stage",
+  "prompt": "Use case: stylized-concept. Asset type: scenic background artwork for a Greek children's charades game, no interface. Landscape 16:10 composition. A premium miniature toy theatre in handcrafted 3D clay style: rich burgundy velvet curtains tied back at the far left and right, layered pleated top valance, warm golden footlights, polished honey-colored wooden stage floor across the bottom quarter, softly glowing overhead spotlights. Keep the large central 60 percent of the composition open and calm with a deep warm burgundy backdrop for readable game controls. Detailed fabric folds, warm volumetric lighting, tactile craftsmanship. No characters, no dice, no board, no cards, no UI, no text, no letters, no logo, no watermark. Charming theatrical atmosphere appropriate for children, rich depth but controlled visual clutter.",
+  "method": "builtin-imagegen"
+}

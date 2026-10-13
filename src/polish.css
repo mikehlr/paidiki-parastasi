@@ -1,0 +1,4 @@
+.category,.card{--category:#176eb6}.category.green,.card.green{--category:#237e50}.category.red,.card.red{--category:#ca3545}.roster li:not(.active){opacity:.9}
+body[data-theme=stage] .roster-wrap,body[data-theme=magic] .roster-wrap{background:#19203bba;border:1px solid #d9c3f02b;padding:8px;border-radius:20px;backdrop-filter:blur(5px)}body[data-theme=nature] .roster-wrap{background:#fff8e5e3;border:1px solid #b8c39988;padding:8px;border-radius:18px}
+@media(max-width:899px){.turn-heading{display:block;max-width:100%;margin:2px 0 6px}.turn-heading .eyebrow{display:none}.turn-heading h2{font-size:16px;line-height:1.2;margin:0;max-width:100%;overflow-wrap:anywhere}body[data-theme=stage] .roster-wrap,body[data-theme=magic] .roster-wrap,body[data-theme=nature] .roster-wrap{padding:3px;border-radius:15px}}
+@media(max-width:899px) and (max-height:510px){.turn-heading{margin:1px 0 4px}.turn-heading h2{font-size:14px}}

@@ -1,0 +1,5 @@
+{
+  "id": "magic",
+  "prompt": "Use case: stylized-concept. Asset type: scenic background artwork for a Greek children's charades game, no interface. Landscape 16:10 composition. A premium whimsical magical toy world in handcrafted 3D clay style: deep navy and violet starry sky, soft lilac and blue dimensional clouds framing the edges and lower quarter, a small charming fairytale castle on a distant floating island at the far right edge, tiny warm gold stars and softly glowing crescent moon high on the left. Dreamy lighting, careful depth, velvety sky and tactile rounded cloud forms. Keep the central 60 percent clear and calm in deep blue for readable game controls. No characters, no dice, no board, no cards, no UI, no text, no letters, no logo or watermark. Rich but controlled child-friendly magical atmosphere.",
+  "method": "builtin-imagegen"
+}
