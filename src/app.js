@@ -15,8 +15,9 @@
   function render(){const playing=state.players.length>0;document.body.dataset.screen=playing?'game':'setup';document.body.dataset.phase=state.phase;$('setup').hidden=playing;$('game').hidden=!playing;if(!playing){settingsStatus();return;}
     $('game').setAttribute('aria-busy',String(busy));$('roster').style.setProperty('--player-count',state.players.length);$('roster').replaceChildren();state.players.forEach((name,i)=>{const li=document.createElement('li');if(i===state.current){li.className='active';li.setAttribute('aria-current','true');}li.append(pawn(i));const label=document.createElement('span');label.className='player-label';label.textContent=name;label.title=name;li.append(label);$('roster').append(li);});$('active-name').textContent=state.players[state.current];
     $('dice-result').textContent=state.result?String(state.result):'';
-    $('roll').hidden=state.phase==='card';$('roll').disabled=busy;
-    $('roll').querySelector('span').textContent=busy?'…':state.result?'Ξαναρίξε':'Ρίξε το ζάρι';$('roll').querySelector('use').setAttribute('href',state.result?'#i-again':'#i-roll');
+    $('roll').disabled=busy||state.phase==='card';
+    $('roll').setAttribute('aria-label',busy?'Το ζάρι κυλάει':state.result?'Ξαναρίξε το ζάρι. Προηγούμενο αποτέλεσμα: '+state.result:'Ρίξε το ζάρι');
+    $('dice-hint').textContent=busy?'Το ζάρι κυλάει…':state.result?'Πάτησε το ζάρι για νέα ρίψη':'Πάτησε το ζάρι για να το ρίξεις';$('dice-hint').hidden=state.phase==='card';
     $('category-view').hidden=state.phase==='card';$('card-view').hidden=state.phase!=='card';
     $('step-label').textContent=state.phase==='select'?'Τώρα το χρώμα':'Πρώτα το ζάρι';$('category-heading').textContent=state.phase==='select'?'Σε ποιο χρώμα έφτασες;':'Ρίξε το ζάρι.';$('board-hint').textContent=state.phase==='select'?'Διάλεξε το χρώμα της θέσης στο πραγματικό ταμπλό.':'Μετά μετακίνησε το πιόνι σου στο ταμπλό.';
     document.querySelectorAll('[data-color]').forEach(b=>b.disabled=busy||state.phase!=='select');
@@ -24,6 +25,8 @@
     settingsStatus();
   }
   function setTheme(t){if(!['simple','stage','nature','magic'].includes(t))t='simple';document.body.dataset.theme=t;document.querySelectorAll('[data-theme-choice]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.themeChoice===t)));document.querySelector('meta[name=theme-color]').content={simple:'#f7f4ed',stage:'#321224',nature:'#e4ead6',magic:'#162151'}[t];PPStorage.setTheme(t);settingsStatus();}
+  function setDice(d){if(!['theme','red','ivory','blue','wood'].includes(d))d='theme';document.body.dataset.dice=d;document.querySelectorAll('[data-dice-choice]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.diceChoice===d)));PPStorage.setDice(d);settingsStatus();}
+  document.querySelectorAll('[data-dice-choice]').forEach(b=>b.onclick=()=>setDice(b.dataset.diceChoice));
   function turnStart(){busy=false;generation++;doneLock=0;PPDice.reset(state.result);save();render();}
   $('setup-form').onsubmit=e=>{e.preventDefault();if(PPGame.start(state,[...document.querySelectorAll('#player-fields input')].map(x=>x.value))){turnStart();$('roll').focus({preventScroll:true});}};
   $('roll').onclick=()=>{if(busy||!state.players.length||!['roll','select'].includes(state.phase))return;busy=true;const token=++generation;state.phase='roll';state.result=0;state.card=null;save();render();const result=Math.floor(Math.random()*6)+1;PPDice.roll(result,()=>{if(token!==generation||!state.players.length)return;busy=false;PPGame.rolled(state,result);save();render();});};
@@ -35,6 +38,6 @@
   $('reset-cards').onclick=()=>{if(busy||state.phase==='card')return;if(confirm('Να ξαναμπούν και οι 300 κάρτες στις τράπουλες;')){state.used={blue:[],green:[],red:[]};save();settingsStatus();}};
   for(const [theme,image] of Object.entries(SCENES)){document.documentElement.style.setProperty('--scene-'+theme,`url("${image}")`);document.querySelector(`[data-scene="${theme}"]`).style.backgroundImage=`url("${image}")`;}
   document.querySelectorAll('[data-art]').forEach(img=>{const id=img.dataset.art;const c=Object.values(CARDS).flat().find(c=>c.id===id);img.src=c.image;});
-  PPDice.init($('cube'));fields();setTheme(PPStorage.theme());turnStart();
-  window.PaidikiParastasi=Object.freeze({version:'3.0.0',getState:()=>JSON.parse(JSON.stringify(state))});
+  PPDice.init($('cube'));fields();setTheme(PPStorage.theme());setDice(PPStorage.dice());turnStart();
+  window.PaidikiParastasi=Object.freeze({version:'3.1.0',getState:()=>JSON.parse(JSON.stringify(state))});
 })();

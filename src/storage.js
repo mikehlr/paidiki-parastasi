@@ -13,6 +13,8 @@ const PPStorage = (() => {
     },
     save(state) { return write(KEY, JSON.stringify(state)); },
     theme() { const t=read(THEME); return ['simple','stage','nature','magic'].includes(t) ? t : 'simple'; },
+    dice() { const d=read('paidiki-parastasi-dice-v1'); return ['theme','red','ivory','blue','wood'].includes(d)?d:'theme'; },
+    setDice(dice) { return write('paidiki-parastasi-dice-v1', dice); },
     setTheme(theme) { return write(THEME, theme); },
     restart(state) { this.save(state); for(const key of ['paidiki-parastasi-players-v2','paidiki-parastasi-used-v1'])try{localStorage.removeItem(key);}catch{available=false;} },
     available() { return available; }
